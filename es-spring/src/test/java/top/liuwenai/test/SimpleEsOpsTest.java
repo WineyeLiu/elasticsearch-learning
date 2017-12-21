@@ -30,9 +30,9 @@ public class SimpleEsOpsTest {
 	@Test
 	public void save() {
 		Tweet tweet = new Tweet();
-		tweet.setId("667");
+		tweet.setId("668");
 		tweet.setName("test1");
-		tweet.setMessage("test message1.1");
+		tweet.setMessage("test message1.33");
 		tweetService.save(tweet);
 	}
 	
@@ -53,6 +53,32 @@ public class SimpleEsOpsTest {
 	@Test
 	public void findByMessage() {
 		List<Tweet> list = tweetService.findByMessage("test");
+		log.info(list);
+	}
+	
+	
+	//Chinese test
+	
+	// add some Chinese content
+	@Test
+	public void addSomeChinese() {
+		Tweet tweet1 = new Tweet();
+		tweet1.setId("1001");
+		tweet1.setName("杰伦");
+		tweet1.setMessage("最美的不是下雨天，是曾与你躲过雨的屋檐");
+		
+		Tweet tweet2 = new Tweet();
+		tweet2.setId("1002");
+		tweet2.setName("liuwenai");
+		tweet2.setMessage("如果明天是雨天我就去打羽毛球");
+		
+		tweetService.save(tweet1);
+		tweetService.save(tweet2);
+	}
+	
+	@Test
+	public void findChinese() {
+		List<Tweet> list = tweetService.findByMessage("天");
 		log.info(list);
 	}
 	

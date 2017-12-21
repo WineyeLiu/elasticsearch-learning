@@ -12,7 +12,7 @@
 
     <elasticsearch:repositories base-package="top.liuwenai.repository" />
 
-    <elasticsearch:transport-client id="client" cluster-nodes="192.168.3.59:9300" cluster-name="elasticsearch" />
+    <elasticsearch:transport-client id="client" cluster-nodes="192.168.146.128:9300" cluster-name="elasticsearch" />
 
     <bean name="elasticsearchTemplate" class="org.springframework.data.elasticsearch.core.ElasticsearchTemplate">
         <constructor-arg ref="client"/>
