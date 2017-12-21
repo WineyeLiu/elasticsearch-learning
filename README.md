@@ -1,13 +1,87 @@
+# ElasticSearch 学习文档
+
+    ElasticSearch (以下简称ES) 是 一个distributed, RESTful search and analytics engine
+
+## 基础
+
+### ES安装
+
+    解压 elasticsearch-5.5.0.zip 即可
+
+    运行方法：执行bin目录下的elasticsearch即可（使用nohup可作为守护进程启动）
+
+#### 运行环境
+
+    linux 上不能以root用户安装,创建一个新用户es
+
+    需要JAVA环境。检查Java环境，最好使用官方推荐的Java版本
+
+    报错解决方法：
+
+        a) ERROR: bootstrap checks failed   max file descriptors [4096] for elasticsearch process likely too low, increase to at least [65536]
+
+            vim /etc/security/limits.conf
+
+            添加如下内容:
+
+            es  soft    nofile  65536
+
+            es  hard    nofile  131072
+
+            es  soft    nproc   2048
+
+            es  hard    nproc   4096
+
+            保存后重新登陆生效
+
+        b) max virtual memory areas vm.max_map_count [65530] likely too low, increase to at least [262144]
+
+            vim /etc/sysctl.conf
+
+            添加如下内容：
+
+            vm.max_map_count=655360
+
+        c) max number of threads [1024] for user [es] likely too low, increase to at least [2048]
+
+            cd /etc/security/limits.d
+
+            找到形如xx-nproc.conf的文件，用vim编辑，找到如下内容：
+
+            *   soft    nproc   1024
+
+            将1024改为2048
+
+#### ES配置
+
+##### elasticsearch.yml配置
+
+    ES的常见配置都在conf目录下的elasticsearch.yml配置文件中。
+
+    ES默认只允许本机访问。如果需要通过别的机器访问ES的API，需要将 network.host 配置项配置为需要访问ES的机器的IP。
+
+    开发环境下可设置为 network.host: 0.0.0.0 （所有机器都能访问）
+
+##### 配置中文分词：elasticsearch-analysis-ik
+
+```bash
+    ./bin/elasticsearch-plugin install https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v5.5.0/elasticsearch-analysis-ik-5.5.0.zip
+```
+
+    插件的版本必须与ES版本一致
+
 ### 基本ES操作
 
 #### 基本概念
-* index --> db
-* type --> table
-* document --> record
-* field --> column
+
+    * index --> db
+    * type --> table
+    * document --> record
+    * field --> column
 
 
 #### 基本CRUD操作
+
 * create   
 
     ```bash 
@@ -88,6 +162,5 @@
     ```bash  
     curl -X DELETE localhost:9200/myindex/mytype/1
     ```
-    
 
-    
+
