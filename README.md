@@ -165,9 +165,9 @@
 
 ### ES Java-api
 
-    参考：[ES Java-Api](https://www.elastic.co/guide/en/elasticsearch/client/java-api/5.6/index.html)
+参考：[ES Java-Api](https://www.elastic.co/guide/en/elasticsearch/client/java-api/5.6/index.html)
 
-    参考：es-learning
+参考：es-learning
 
 ```java
     Settings settings = Settings.builder().put("client.transport.ignore_cluster_name", true).put("client.transport.ping_timeout", "30s").put("client.transport.sniff", true).build();
@@ -183,4 +183,4 @@
 
 ### ES与 spring-data集成
 
-    参考：es-spring
+参考：es-spring
