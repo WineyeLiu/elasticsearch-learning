@@ -163,4 +163,24 @@
     curl -X DELETE localhost:9200/myindex/mytype/1
     ```
 
+### ES Java-api
 
+    参考：[ES Java-Api](https://www.elastic.co/guide/en/elasticsearch/client/java-api/5.6/index.html)
+
+    参考：es-learning
+
+```java
+    Settings settings = Settings.builder().put("client.transport.ignore_cluster_name", true).put("client.transport.ping_timeout", "30s").put("client.transport.sniff", true).build();
+
+	TransportClient client = new PreBuiltTransportClient(settings).addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("192.168.146.128"), 9300));
+
+	log.info("init completed!");
+
+	List<DiscoveryNode> nodes = client.connectedNodes();
+
+	log.info("connected nodes ("+nodes.size()+") :"+nodes);
+```
+
+### ES与 spring-data集成
+
+    参考：es-spring
